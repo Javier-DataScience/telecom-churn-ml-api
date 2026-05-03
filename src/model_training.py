@@ -32,7 +32,11 @@ def evaluate_model(model, imputer, X_test, y_test):
 
     from sklearn.metrics import classification_report
 
+    BEST_THRESHOLD = 0.3
+
     X_test_clean = imputer.transform(X_test)
-    y_pred = model.predict(X_test_clean)
+
+    y_proba = model.predict_proba(X_test_clean)[:, 1]
+    y_pred = (y_proba >= BEST_THRESHOLD).astype(int)
 
     print(classification_report(y_test, y_pred))
