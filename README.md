@@ -265,7 +265,7 @@ Final version is pushed to GitHub as a stable production-ready release.
 ## 👤 Author
 
 **Alvaro Vega**  
-Machine Learning Engineer (Aspiring) | AI Systems Designer | NLP & LLM Engineering Learner  
+Aspiring AI Engineer | Machine Learning Engineer | NLP & LLM Systems
 
 ### 🧠 Project Context
 
