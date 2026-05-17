@@ -1,86 +1,278 @@
-# 📊 Telecom Churn Prediction – End-to-End ML System
+# 📊 Telecom Churn Prediction – End-to-End ML Engineering System (V2)
 
 ## 🧠 Project Overview
-This project is an end-to-end machine learning system to predict customer churn using historical telecom data. It includes data preprocessing, feature engineering, model training, hyperparameter tuning, threshold optimization, experiment tracking with MLflow, and deployment using FastAPI and Docker.
+
+This project implements a complete **Machine Learning Engineering system for telecom customer churn prediction**, designed with a strong focus on modularity, reproducibility, and production readiness.
+
+Instead of focusing only on model training, the system is engineered as a full end-to-end ML pipeline that separates:
+
+- Data processing  
+- Feature engineering  
+- Model training  
+- Experiment tracking  
+- Model evaluation  
+- Deployment  
+
+The system compares multiple machine learning models (**Random Forest, XGBoost, LightGBM**) using **GridSearchCV and cross-validation**, and selects the best-performing model based on **ROC-AUC and classification metrics**.
+
+The final model is deployed as a production-ready service using **FastAPI** and **Docker**, with full experiment tracking using **MLflow** and version control via **Git + GitHub**.
+
+---
+
+## 🏗️ Architecture
+
+```
+Raw Data
+   ↓
+EDA & Feature Engineering
+   ↓
+Training Pipeline
+   ├── Random Forest
+   ├── XGBoost
+   └── LightGBM
+          ↓
+GridSearchCV + Cross-Validation
+          ↓
+MLflow Tracking & Experiment Logging
+          ↓
+Best Model Selection (ROC-AUC)
+          ↓
+Production Inference Pipeline
+          ↓
+FastAPI REST API
+          ↓
+Dockerized Deployment
+```
+---
+
+## 🚀 Tech Stack
+
+### Core Tools
+- Python 3.10+
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
+- LightGBM
+- Random Forest
+
+### MLOps & Engineering
+- MLflow (experiment tracking)
+- Git + GitHub (version control)
+- FastAPI (REST API)
+- Docker (containerization)
+
+### Visualization & Evaluation
+- Matplotlib
+- Seaborn
+- ROC Curve analysis
+- AUC score
+- Confusion matrix
+
+---
+
+## 📊 Machine Learning Pipeline
+
+1. Environment setup (Conda + dependencies)
+2. Project structure creation (modular architecture)
+3. Data loading module
+4. Exploratory Data Analysis (EDA)
+5. Feature engineering pipeline
+6. Model training:
+   - Random Forest
+   - XGBoost
+   - LightGBM
+7. Hyperparameter tuning (GridSearchCV + cross-validation)
+8. MLflow experiment tracking (in code modules only)
+9. Model comparison using ROC-AUC
+10. Best model selection
+11. FastAPI deployment
+12. Docker containerization
 
 ---
 
 ## 🚀 Tech Stack
-- Python
-- XGBoost
+
+### Core Tools
+- Python 3.10+
+- Pandas
+- NumPy
 - Scikit-learn
-- Pandas / NumPy
+- XGBoost
+- LightGBM
+- Random Forest
+
+### MLOps & Engineering
 - MLflow (experiment tracking)
-- FastAPI (model serving API)
+- Git + GitHub (version control)
+- FastAPI (REST API)
 - Docker (containerization)
-- Joblib (model serialization)
+
+### Visualization & Evaluation
+- Matplotlib
+- Seaborn
+- ROC Curve analysis
+- AUC score
+- Confusion matrix
 
 ---
 
-## 📊 ML Pipeline
+## 📊 Machine Learning Pipeline
 
-1. Data preprocessing
-2. Exploratory Data Analysis (EDA)
-3. Feature engineering
-4. Model training (XGBoost)
-5. Hyperparameter tuning
-6. Threshold optimization
-7. MLflow experiment tracking
-8. Final model selection
-9. Model serialization
-10. FastAPI deployment
-11. Docker containerization
+1. Environment setup (Conda + dependencies)
+2. Project structure creation (modular architecture)
+3. Data loading module
+4. Exploratory Data Analysis (EDA)
+5. Feature engineering pipeline
+6. Model training:
+   - Random Forest
+   - XGBoost
+   - LightGBM
+7. Hyperparameter tuning (GridSearchCV + cross-validation)
+8. MLflow experiment tracking (in code modules only)
+9. Model comparison using ROC-AUC
+10. Best model selection
+11. FastAPI deployment
+12. Docker containerization
 
 ---
 
-## 📦 Project Structure
-telecom_churn_project/
+## 📁 Project Structure
+```
+telecom_churn_v2/
 │
-├── notebooks/ # EDA + MLflow experiments
 ├── src/
-│ └── app.py # FastAPI app
+│ ├── data/
+│ ├── features/
+│ ├── training/
+│ ├── evaluation/
+│ ├── inference/
+│ └── utils/
+│
+├── notebooks/
+│ └── EDA_analysis.ipynb
+│
+├── api/
+│ └── main.py
+│
 ├── models/
-│ └── xgboost_model.pkl # Trained model
-├── requirements.txt
+├── mlruns/
 ├── Dockerfile
+├── requirements.txt
 └── README.md
+```
+
 
 ---
 
-## 🚀 How to Run the Project
+## 📈 Model Evaluation
 
-### 1. Clone repository
-```bash
-git clone https://github.com/Javier-DataScience/telecom-churn-ml-api.git
-cd telecom-churn-ml-api
-2. Run with Docker
-docker build -t telecom-churn-api .
-docker run -p 8000:8000 telecom-churn-api
-3. Access API
+Models are evaluated using:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- ROC-AUC (**primary metric**)
+
+### Visualizations:
+- ROC curve comparison (all models)
+- AUC comparison
+- Confusion matrix
+
+---
+
+## 🧠 MLflow Tracking
+
+MLflow is used inside training modules to track:
+
+- Hyperparameters (GridSearchCV results)
+- Metrics (accuracy, precision, recall, F1, ROC-AUC)
+- Model artifacts
+- Best model selection
+
+---
+
+## 🚀 FastAPI Deployment
+
+Run API locally:
+
+```uvicorn api.main:app --reload
+Access:
+
 http://127.0.0.1:8000/docs
-________________________________________
-📈 Model Performance
-•	Model: XGBoost 
-•	Optimization: GridSearchCV + Threshold tuning 
-•	Tracking: MLflow 
-________________________________________
-📌 Key Learning Outcomes
-•	End-to-end ML pipeline design 
-•	Model deployment with FastAPI 
-•	Containerization with Docker 
-•	Experiment tracking with MLflow 
-________________________________________
-👨‍💻 Author
-Javier Data Science Project
+```
+## 🐳 Docker Deployment
+
+### Build image
+
+```
+docker build -t telecom-churn-api .
+```
+Run container
+```
+docker run -p 8000:8000 telecom-churn-api
+```
+## 🔁 Git & GitHub Workflow
+
+This project follows continuous version control:
+
+- Git used from day one
+- Commits after each stable milestone:
+  - setup
+  - EDA
+  - training pipeline
+  - MLflow integration
+  - API development
+  - Dockerization
+
+Final version is pushed to GitHub as a stable production-ready release.
 
 ---
 
-# 🚀 STEP 2 — Commit README
+## 📌 Key Engineering Highlights
 
-After saving:
+- End-to-end ML system design
+- Modular Python architecture
+- Multi-model comparison (RF, XGBoost, LightGBM)
+- GridSearchCV hyperparameter tuning
+- MLflow experiment tracking (production style)
+- ROC-AUC based model selection
+- FastAPI deployment
+- Docker containerization
+- GitHub version-controlled workflow
 
-```bash
-git add README.md
-git commit -m "Add professional README for portfolio"
-git push
+---
+
+## 🎯 Learning Outcomes
+
+- ML system design (end-to-end pipeline)
+- MLOps fundamentals (MLflow + Git + Docker)
+- Model evaluation using ROC-AUC
+- Production API development with FastAPI
+- Containerized ML deployment
+- Reproducible ML engineering workflows
+
+---
+
+### Focus Areas
+
+- Machine Learning Systems
+- MLOps & Deployment
+- LLM & NLP Engineering
+- Cloud AI (Azure / AWS roadmap)
+
+## 👤 Author
+
+**Alvaro Vega**  
+Machine Learning Engineer (Aspiring) | AI Systems Designer | NLP & LLM Engineering Learner  
+
+### 🧠 Project Context
+
+This repository is part of a structured learning path focused on building **production-grade Machine Learning Engineering systems**, including modular ML architecture, MLOps practices, and cloud deployment readiness.
+
+### 🔗 GitHub
+
+https://github.com/Javier-DataScience
+
 
